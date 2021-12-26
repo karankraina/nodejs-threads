@@ -1,6 +1,6 @@
 {
   "name": "nodejs-threads",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "A very simple functiobn based implementation of node.js worker threads",
   "main": "lib/index.js",
   "scripts": {
