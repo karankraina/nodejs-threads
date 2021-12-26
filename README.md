@@ -42,9 +42,9 @@ Use the ```defineWorker``` function to define a worker job in ```worker.js``` fi
 /** 
  * This code will execute in a separate thread
 */
-const { defineWorker } = require('nodejs-utils');
+const { defineWorker } = require('nodejs-threads');
 // OR
-import { defineWorker } from 'nodejs-utils';
+import { defineWorker } from 'nodejs-threads';
 
 
 defineWorker(async (payload) => {
@@ -68,7 +68,9 @@ defineWorker(async (payload) => {
 You can create a new worker thread by simply calling ```createWorker``` function. The first argument is the path of the ```worker.js``` file and you can pass any payload as the second argument. The payload passed will be provided as an argument in the worker callback function.
 
 ```javascript
-const { createWorker } = require('nodejs-utils');
+const { createWorker } = require('nodejs-threads');
+// OR
+import { createWorker } from 'nodejs-threads';
 
 // Inside any async function
 const worker = await createWorker('./worker.js', {
