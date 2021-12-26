@@ -1,0 +1,45 @@
+{
+  "name": "nodejs-threads",
+  "version": "1.0.0",
+  "description": "A very simple functiobn based implementation of node.js worker threads",
+  "main": "lib/index.js",
+  "scripts": {
+    "build": "babel src --out-dir lib",
+    "prepublish": "npm run build",
+    "test": "jest"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/karankraina/nodejs-threads.git"
+  },
+  "keywords": [
+    "nodejs",
+    "npm",
+    "worker",
+    "threads"
+  ],
+  "author": "Karan Raina <karanraina1996@gmail.com>",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/karankraina/nodejs-threads/issues"
+  },
+  "homepage": "https://github.com/karankraina/nodejs-threads#readme",
+  "devDependencies": {
+    "jest": "^27.4.5",
+    "@babel/cli": "^7.16.0",
+    "@babel/core": "^7.16.5",
+    "@babel/preset-env": "^7.16.5"
+  },
+  "babel": {
+    "presets": [
+      [
+        "@babel/preset-env",
+        {
+          "targets": {
+            "node": true
+          }
+        }
+      ]
+    ]
+  }
+}
