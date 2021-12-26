@@ -5,6 +5,7 @@
   "main": "lib/index.js",
   "scripts": {
     "build": "babel src --out-dir lib",
+    "build:dev": "babel src --out-dir lib --watch",
     "prepublish": "npm run build",
     "test": "jest"
   },
