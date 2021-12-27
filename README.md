@@ -32,7 +32,12 @@
 npm install nodejs-threads
 ```
 
-## Usage
+## API Guide
+
+### 🔥 Read our [API.md](https://github.com/karankraina/nodejs-threads/blob/main/API.md) file for detailed API documentation.
+
+
+## Basic Usage
 
 ### Define a worker job that needs to be run in a separate thread.
 

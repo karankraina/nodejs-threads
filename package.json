@@ -8,7 +8,8 @@
     "build:dev": "babel src --out-dir lib --watch",
     "prepublish": "npm run build",
     "test": "jest --config jest.config.js",
-    "test:dev": "jest --config jest.config.js --watchAll"
+    "test:dev": "jest --config jest.config.js --watchAll",
+    "docs": "jsdoc2md src/**/*.js > API.md"
   },
   "repository": {
     "type": "git",
@@ -27,10 +28,11 @@
   },
   "homepage": "https://github.com/karankraina/nodejs-threads#readme",
   "devDependencies": {
-    "jest": "^27.4.5",
     "@babel/cli": "^7.16.0",
     "@babel/core": "^7.16.5",
-    "@babel/preset-env": "^7.16.5"
+    "@babel/preset-env": "^7.16.5",
+    "jest": "^27.4.5",
+    "jsdoc-to-markdown": "^7.1.0"
   },
   "babel": {
     "presets": [
