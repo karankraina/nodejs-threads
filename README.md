@@ -34,31 +34,94 @@ npm install nodejs-threads
 
 ## API Guide
 
-### 🔥 Read our [API.md](https://github.com/karankraina/nodejs-threads/blob/main/API.md) file for detailed API documentation.
+<!-- API Docs start here -->
 
+## Modules
 
-## Basic Usage
+<dl>
+<dt><a href="#module_nodejs-threads">nodejs-threads</a></dt>
+<dd></dd>
+</dl>
 
-### Define a worker job that needs to be run in a separate thread.
+### Functions
 
-Use the ```defineWorker``` function to define a worker job in ```worker.js``` file (can be named anything). This function takes an async function as argument. It passes the payload received from the main thread to the argument function of the worker thread.
+<dl>
+<dt><a href="#createWorker">createWorker(workerPath, [payload])</a> ⇒</dt>
+<dd><p>Function to create a new worker thread. Calling this function will instantiate a new worker thread
+and return a promise which resolves to the reference to the worker thread. The worker thread will
+be executed in a separate process.</p>
+</dd>
+<dt><a href="#defineWorker">defineWorker(job)</a> ⇒</dt>
+<dd><p>Function to define what should be executed inside the worker thread.
+The async function will be executed as soon as the worker thread is created.</p>
+</dd>
+</dl>
 
-```javascript
-/** 
- * This code will execute in a separate thread
-*/
+<a name="module_nodejs-threads"></a>
+
+### nodejs-threads
+<a name="createWorker"></a>
+
+### createWorker(workerPath, [payload]) ⇒
+Function to create a new worker thread. Calling this function will instantiate a new worker thread
+and return a promise which resolves to the reference to the worker thread. The worker thread will
+be executed in a separate process.
+
+**Kind**: global function  
+**Returns**: Promise which resolves to the reference of the worker  
+**Throws**:
+
+- <code>Error</code> If workerPath is not a string
+
+**Created**: 27-DEC-2021  
+**Author**: Karan Raina <karanraina1996@gmail.com>  
+
+| Param | Type | Description |
+| --- | --- | --- |
+| workerPath | <code>string</code> | Path to the worker file |
+| [payload] | <code>object</code> | Payload to be sent to the worker |
+
+**Example**  
+```js
+const { createWorker } = require('nodejs-threads');
+// OR
+import { createWorker } from 'nodejs-threads';
+// Inside any async function
+const worker = await createWorker('./worker.js', {
+       range: 50000000,
+    });
+// Attach a listener if you expect any return value from the worker funcion
+worker.on('message', (result) => {
+    console.log(result);
+});
+```
+<a name="defineWorker"></a>
+
+### defineWorker(job) ⇒
+Function to define what should be executed inside the worker thread.
+The async function will be executed as soon as the worker thread is created.
+
+**Kind**: global function  
+**Returns**: Returns a promise which resolves to the result of the job  
+**Created**: 27-DEC-2021  
+**Author**: Karan Raina <karanraina1996@gmail.com>  
+
+| Param | Type | Description |
+| --- | --- | --- |
+| job | <code>function</code> | Async function to be executed in the worker |
+
+**Example**  
+```js
+// This code will execute in a separate thread
 const { defineWorker } = require('nodejs-threads');
 // OR
 import { defineWorker } from 'nodejs-threads';
-
-
 defineWorker(async (payload) => {
     console.log(payload); // Payload from the Primary thread is availbale here
-
-    /*
-    * Do any CPU intensive task here.
-    * The event loop in primary thread won't be blocked .
-    */
+    
+    // Do any CPU intensive task here.
+    // The event loop in primary thread won't be blocked .
+    
     let result = 0;
     for (let i = 0; i < payload.range; i++) {
         result += i;
@@ -68,27 +131,7 @@ defineWorker(async (payload) => {
 });
 ```
 
-### Create a worker thread
-
-You can create a new worker thread by simply calling ```createWorker``` function. The first argument is the path of the ```worker.js``` file and you can pass any payload as the second argument. The payload passed will be provided as an argument in the worker callback function.
-
-```javascript
-const { createWorker } = require('nodejs-threads');
-// OR
-import { createWorker } from 'nodejs-threads';
-
-// Inside any async function
-const worker = await createWorker('./worker.js', {
-       range: 50000000,
-    });
-
-// Attach a listener if you expect any return value from the worker funcion
-worker.on('message', (result) => {
-    console.log(result);
-});
-    
-```
-
+<!-- API Docs end here -->
 
 ## Run tests
 
