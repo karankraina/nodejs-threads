@@ -1,13 +1,14 @@
 {
   "name": "nodejs-threads",
-  "version": "1.0.1",
+  "version": "1.0.2",
   "description": "A very simple functiobn based implementation of node.js worker threads",
   "main": "lib/index.js",
   "scripts": {
     "build": "babel src --out-dir lib",
     "build:dev": "babel src --out-dir lib --watch",
     "prepublish": "npm run build",
-    "test": "jest"
+    "test": "jest --config jest.config.js",
+    "test:dev": "jest --config jest.config.js --watchAll"
   },
   "repository": {
     "type": "git",
