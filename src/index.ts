@@ -3,8 +3,9 @@
  */
 import createWorker from "./createWorker";
 import defineWorker from "./defineWorker";
+import runInWorker from "./runInWorker";
 
-export { createWorker, defineWorker };
+export { createWorker, defineWorker, runInWorker };
 
 
 
