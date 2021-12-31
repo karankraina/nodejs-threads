@@ -1,4 +1,4 @@
-const { Worker, isMainThread } = require('worker_threads');
+import { Worker, isMainThread } from 'worker_threads';
 
 /**
  * Function to create a new worker thread. Calling this function will instantiate a new worker thread
@@ -28,13 +28,10 @@ const { Worker, isMainThread } = require('worker_threads');
  * 
  * @throws {Error} If workerPath is not a string
  */
- function createWorker(workerPath, payload = {}) {
+ function createWorker(workerPath: string, payload?: any): Promise<Worker> | null {
 
     if(!workerPath || typeof workerPath !== 'string') {
         throw new Error('Invalid filePath');
-    }
-    if(workerPath === 'testpath'){
-        console.log('======================', { isMainThread });
     }
     if (!isMainThread) {
         return null;
@@ -44,7 +41,7 @@ const { Worker, isMainThread } = require('worker_threads');
             workerData: payload
         });
 
-        worker.on('exit', (code) => {
+        worker.on('exit', (code: number) => {
             console.log(`Worker ${worker.threadId} exited with code ${code}`);
         });
 

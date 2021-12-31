@@ -1,4 +1,4 @@
-const { workerData, isMainThread, parentPort } = require('worker_threads');
+import { workerData, isMainThread, parentPort } from 'worker_threads';
 
 /**
  * Function to define what should be executed inside the worker thread.
@@ -30,13 +30,15 @@ const { workerData, isMainThread, parentPort } = require('worker_threads');
  * 
  * @returns Returns a promise which resolves to the result of the job
  */
- async function defineWorker(job) {
+async function defineWorker(job: Function): Promise<any> {
     // return if it is primary thread
     if (isMainThread) {
         return null;
     }
     const result = await job(workerData);
-    parentPort.postMessage(result);
+    if (parentPort) {
+        parentPort.postMessage(result);
+    }
 };
 
 export default defineWorker;
