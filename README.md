@@ -32,6 +32,34 @@
 npm install nodejs-threads
 ```
 
+
+## Basic Usage
+
+```javascript
+// No need to create a separate file for the worker thread.
+
+const { runInWorker } = require('nodejs-threads');
+// OR
+import { runInWorker } from 'nodejs-threads';
+
+// Assume this is the CPU intensive task
+const { calculateScore } = './users.service';
+
+async function main() {
+    try {
+        // Spawn a worker thread like this:
+        // Does not block the main thread
+        const result = await runInWorker('./users.service', 'calculateScore', { name: 'Karan' });
+        console.log('[PRIMARY] : WORKER EXECUTED WITH ...', result);
+    } catch (error) {
+        console.log('[PRIMARY] : ERROR', error);
+    }
+}
+
+```
+
+
+
 ## API Guide
 
 For complete usage guide, refer our [API.md](https://github.com/karankraina/nodejs-threads/blob/main/API.md) file
